@@ -1,0 +1,40 @@
+{
+    "as_user": true,
+    "channel": "botland",
+    "attachments": [
+        {
+            "fallback": "Deployment {{ .Env.SLACK_MSG_STATUS }} for Demo to {{ .Env.ENVIRONMENT_NAME }}",
+            "color": "{{ .Env.SLACK_MSG_COLOR }}",
+            "title": "{{ .Env.SLACK_MSG_EMOJI }} Deployment {{ .Env.SLACK_MSG_STATUS }} for Demo to {{ .Env.ENVIRONMENT_NAME }}",
+            "fields": [
+                {
+                    "title": "Project",
+                    "value": "Demo",
+                    "short": true
+                },
+                {
+                    "title": "Env",
+                    "value": "{{ .Env.ENVIRONMENT_NAME }}",
+                    "short": true
+                },
+                {
+                    "title": "Version",
+                    "value": "{{ .Env.CI_COMMIT_SHORT_SHA }}",
+                    "short": true
+                },
+                {
+                    "title": "Status",
+                    "value": "{{ .Env.SLACK_MSG_STATUS }}",
+                    "short": true
+                }
+            ],
+            "actions": [
+                {
+                    "type": "button",
+                    "text": "View Pipeline",
+                    "url": "{{ .Env.CI_PIPELINE_URL }}"
+                }
+            ]
+        }
+    ]
+}

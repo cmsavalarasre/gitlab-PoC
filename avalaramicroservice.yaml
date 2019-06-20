@@ -1,0 +1,20 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: gomicro-deploy
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: gomicro 
+    spec:
+      containers:
+      - name: gomicro 
+        image: avamicro/latest
+        ports:
+        - containerPort: 8080 
+        env:
+        - name: AVALARAMICRO_SERVICE_VERSION
+          value: "1.0"
+
